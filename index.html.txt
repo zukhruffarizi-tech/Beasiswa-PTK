@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Beasiswa Anak PTK</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+        background-attachment: fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 16px;
+        color: #1d1d1f;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.4); 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border-top: 1px solid rgba(255, 255, 255, 0.8);
+        border-left: 1px solid rgba(255, 255, 255, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 24px;
+        border-radius: 24px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      }
+      h2 {
+        text-align: center;
+        color: #1d1d1f;
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+      .info-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .author-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #007aff;
+        margin-bottom: 6px;
+      }
+      .update-time {
+        font-size: 11px;
+        color: #1d1d1f;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      .desktop-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+      }
+      .desktop-table th {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #1d1d1f;
+        padding: 14px;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: left;
+        border: none;
+      }
+      .desktop-table th:first-child { border-top-left-radius: 14px; border-bottom-left-radius: 14px; }
+      .desktop-table th:last-child { border-top-right-radius: 14px; border-bottom-right-radius: 14px; }
+      .desktop-table td {
+        padding: 14px;
+        font-size: 14px;
+        border: none;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        color: #1d1d1f;
+        border-top: 1px solid rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .desktop-ptk-cell {
+        font-weight: 700;
+        border-radius: 6px;
+        padding: 4px 8px;
+      }
+      .desktop-table tr td:first-child { border-top-left-radius: 14px; border-bottom-left-radius: 14px; border-left: 1px solid rgba(255, 255, 255, 0.7); }
+      .desktop-table tr td:last-child { border-top-right-radius: 14px; border-bottom-right-radius: 14px; border-right: 1px solid rgba(255, 255, 255, 0.2); }
+      .desktop-table tr:hover td {
+        background: rgba(255, 255, 255, 0.8);
+        transition: 0.3s;
+      }
+      .mobile-card { display: none; }
+      .loading {
+        text-align: center;
+        color: #1d1d1f;
+        font-style: italic;
+        padding: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      @media screen and (max-width: 768px) {
+        .desktop-table { display: none; }
+        .mobile-card { display: block; }
+        .card-item {
+          background: rgba(255, 255, 255, 0.55); 
+          backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
+          border-top: 1px solid rgba(255, 255, 255, 0.9);
+          border-left: 1px solid rgba(255, 255, 255, 0.6);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+          border-right: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 18px;
+          padding: 16px 18px;
+          margin-bottom: 14px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+          overflow: hidden;
+        }
+        .card-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          font-size: 13px;
+          padding: 0 4px;
+        }
+        .card-row:last-child { margin-bottom: 0; }
+        .card-label { font-weight: 600; color: #555555; width: 35%; }
+        .card-value { width: 63%; text-align: right; color: #1d1d1f; word-break: break-word; font-weight: 600; }
+        .card-header-title {
+          font-weight: 700;
+          color: #007aff;
+          font-size: 15px;
+          margin: -16px -18px 12px -18px; 
+          padding: 10px 18px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Progress Beasiswa Anak PTK</h2>
+      <div class="info-header">
+        <div class="author-name">&copy; Zukhruf Farizi</div>
+        <div class="update-time">Update: 06:06 p.m 4/10/2026</div>
+      </div>
+      <table class="desktop-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama PTK</th>
+            <th>Nama Santri</th>
+            <th>Kelas</th>
+            <th>Lembaga</th>
+          </tr>
+        </thead>
+        <tbody id="tabel-desktop">
+          <tr><td colspan="5" class="loading">Memuat data...</td></tr>
+        </tbody>
+      </table>
+      <div id="tabel-mobile" class="mobile-card">
+        <div class="loading">Memuat data...</div>
+      </div>
+    </div>
+
+    <script>
+      // Ganti URL di bawah dengan URL Deployment Web App Google Apps Script Anda
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3d97hAyYhmmLC3-mlq6oCzhfsAvM2D5BoxpIfUDcGOCtrOg4ILCvyBp1FoGgCkkRo/exec";
+
+      fetch(APPS_SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => tampilkanData(data))
+        .catch(error => {
+          document.getElementById('tabel-desktop').innerHTML = '<tr><td colspan="5" class="loading">Gagal memuat data.</td></tr>';
+          document.getElementById('tabel-mobile').innerHTML = '<div class="loading">Gagal memuat data.</div>';
+        });
+
+      function tampilkanData(data) {
+        var tbodyDesktop = document.getElementById('tabel-desktop');
+        var containerMobile = document.getElementById('tabel-mobile');
+        
+        tbodyDesktop.innerHTML = ''; 
+        containerMobile.innerHTML = '';
+
+        var countPtk = {};
+        for (var i = 0; i < data.length; i++) {
+          var noStr = (data[i][0] || "").toString().trim();
+          var no = parseInt(noStr);
+          if (!isNaN(no) && no > 0) {
+            var ptk = (data[i][1] || "").trim().toLowerCase();
+            if (ptk !== "") {
+              countPtk[ptk] = (countPtk[ptk] || 0) + 1;
+            }
+          }
+        }
+
+        var yellowColor = "rgba(255, 235, 120, 0.7)";
+
+        for (var i = 0; i < data.length; i++) {
+          var noStr = (data[i][0] || "").toString().trim();
+          var no = parseInt(noStr);
+
+          if (!isNaN(no) && no > 0) {
+            var namaPtk = data[i][1];     
+            var namaSantri = data[i][2];  
+            var kelas = data[i][3];       
+            var lembaga = data[i][4];     
+
+            var ptkKey = namaPtk.trim().toLowerCase();
+            var headerStyle = "";
+
+            if (countPtk[ptkKey] > 1) {
+              headerStyle = 'style="background-color: ' + yellowColor + ';"';
+            }
+
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + no + '</td>' +
+                           '<td><span class="desktop-ptk-cell" ' + (countPtk[ptkKey] > 1 ? headerStyle : '') + '>' + namaPtk + '</span></td>' +
+                           '<td>' + namaSantri + '</td>' +
+                           '<td>' + kelas + '</td>' +
+                           '<td>' + lembaga + '</td>';
+            tbodyDesktop.appendChild(tr);
+
+            var card = document.createElement('div');
+            card.className = 'card-item';
+            card.innerHTML = 
+              '<div class="card-header-title" ' + headerStyle + '><span>No. ' + no + '</span> <span>' + namaPtk + '</span></div>' +
+              '<div class="card-row"><span class="card-label">Nama Santri</span><span class="card-value">' + namaSantri + '</span></div>' +
+              '<div class="card-row"><span class="card-label">Kelas</span><span class="card-value">' + kelas + '</span></div>' +
+              '<div class="card-row"><span class="card-label">Lembaga</span><span class="card-value">' + lembaga + '</span></div>';
+            containerMobile.appendChild(card);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
